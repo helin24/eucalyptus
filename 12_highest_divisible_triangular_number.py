@@ -6,6 +6,9 @@ def first_with_n_divisors(n):
 
     while True:
         triangular += num
+        if triangular % 2 != 0 or triangular % 3 != 0 or triangular % 5 != 0:
+            num += 1
+            continue
         factors = 0
 
         factor = 1
@@ -17,7 +20,7 @@ def first_with_n_divisors(n):
             if sqrt == int(sqrt):
                 factors -= 1
             
-
+#        print "number %s has %s factors" % (triangular, factors)
         if factors >= n:
             break
 
