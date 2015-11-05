@@ -31,5 +31,6 @@ def multiple_values_sum(lista, listb):
         product_sum += lista[index] * listb[index]
     return product_sum
 
-
+start = time.time()
 print coin_combinations(200, [200, 100, 50, 20, 10, 5, 2, 1])
+print time.time() - start
