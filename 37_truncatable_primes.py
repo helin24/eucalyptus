@@ -1,3 +1,5 @@
+import time
+
 def sum_truncatables():
     primes, truncatables = {}, {}
     numbers = range(2,1000000)
@@ -44,8 +46,6 @@ def sum_truncatables():
 
     return sum(truncatables.keys())
 
-
-
-
-        
+start = time.time()
 print sum_truncatables()
+print time.time() - start
