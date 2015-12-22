@@ -1,28 +1,26 @@
 import math
+import time
 
 def max_triangles(max_num):
     max_triangles = 0
     max_p = 0
-    for p in range(1, max_num + 1):
-        num_triangles = 0
-        for i in range(1, p / 3 + 1):
-            for j in range(i, (p - i) / 2 + 1):
-                if math.sqrt(i*i + j*j) == p - i - j:
-#                    print "%s and %s and %s makes right triangle" % (i, j, p - i - j)
-                    num_triangles += 1
+    perimeters = {}
+    
+    for i in range(1, max_num / 3 + 1):
+        for j in range(i, (max_num - i) / 2 + 1):
+            hyp = math.sqrt(i * i + j * j)
+            if hyp == math.floor(hyp):
+                perim = i + j + int(hyp)
+                if perim in perimeters:
+                    perimeters[perim] += 1
                 else:
-                    pass
-#                    print "%s and %s and %s not right triangle" % (i, j, p - i - j)
-        if num_triangles > max_triangles:
-            max_triangles, max_p = num_triangles, p
+                    perimeters[perim] = 1
+                if perimeters[perim] > max_triangles:
+                    max_p = perim
+                    max_triangles = perimeters[perim]
 
     return max_triangles, max_p
-    # for each perimeter from 1 to max_num:
-        # for each first side (i) from 1 to 1/3 of max num:
-            # for each second side from i to 1/3 of max num:
-                # find what i^2 + j^2 would mean for third side. 
-                # if sqrt of squares is max_num - i - j
-                    # increment number of triangles
 
-
+start = time.time()
 print max_triangles(1000)
+print time.time() - start
