@@ -6,20 +6,13 @@ def triangle_count(filename):
     long_str = f.read()
     triangles = 0
     for word in long_str.split(','):
-        if is_triangle(word_value(word[1:-1])):
+        if quadratic_is_triangle(word_value(word[1:-1])):
             triangles += 1
     return triangles
 
-def is_triangle(value):
-    n = int(math.floor(math.sqrt(value)))
-    while True:
-        test = n * (n + 1) / 2
-        if test == value:
-            return True
-        elif test > value:
-            return False
-        n += 1
-    
+def quadratic_is_triangle(value):
+    n = (math.sqrt(1 + 8 * value) - 1) / 2
+    return int(n) == n
 
 def word_value(word):
     value = 0
@@ -28,4 +21,6 @@ def word_value(word):
 
     return value
 
+start = time.time()
 print triangle_count('p042_words.txt')
+print time.time() - start
