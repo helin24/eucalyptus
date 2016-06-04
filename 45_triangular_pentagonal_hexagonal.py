@@ -1,30 +1,30 @@
 import time
 
 def matching():
-  tri_n = 286
-  pen_n = 165
+
+  # all hexagonal numbers are triangular
+  # h represents hexagonal index, t represents triangle index
+  # h = 2t - 1
+  # (2t - 1)(2t - 1 + 1) / 2
+  # (2t - 1)(2t) / 2
+  # t(2t - 1)
+
+  pen_n = 166
   hex_n = 143
 
-  triangle = triangular(tri_n)
   pentagon = pentagonal(pen_n)
   hexagon = hexagonal(hex_n)
 
-  while triangle != pentagon or triangle != hexagon:
-    if triangle <= pentagon and triangle <= hexagon:
-      tri_n += 1
-      triangle = triangular(tri_n)
-    elif pentagon <= triangle and pentagon <= hexagon:
+  while pentagon != hexagon:
+    if pentagon <= hexagon:
       pen_n += 1
       pentagon = pentagonal(pen_n)
     else:
       hex_n += 1
       hexagon = hexagonal(hex_n)
 
-  return triangle
+  return pentagon
 
-
-def triangular(n):
-  return n * (n + 1) / 2
 
 def pentagonal(n):
   return n * (3 * n - 1) / 2
